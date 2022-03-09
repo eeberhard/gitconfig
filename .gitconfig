@@ -1,0 +1,35 @@
+[user]
+	email = $$$
+	name = Enrico Eberhard
+[core]
+	editor = nano
+	excludesfile = /Users/enricoeberhard/.gitignore_global
+
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+
+[merge]
+	tool = opendiff
+
+[commit]
+	template = /Users/enricoeberhard/.stCommitMsg
+
+[alias]
+	tree = log --graph --pretty=format:'%C(red)%h%Creset - %C(bold)%s%Creset %C(green)(%cr) %C(blue)<%an>%Creset %C(yellow)%d%Creset %n' --abbrev-commit --date=relative --branches
+	overhere = pull
+	outtahere = push
+	gone = push
+	gud = reset --hard HEAD
+	diffs = diff --cached
+	ndiffs = diff --shortstat --cached
+	co = checkout
+	new = checkout -b
+	fetchb = "!f() { git fetch origin \"$1\":\"$1\"; }; f"
+	pushup = "!f() { git push --set-upstream origin $(git branch --show-current); }; f"
+	git = "!f() { git $@; }; f"
+	set-date = "!f() { GIT_COMMITTER_DATE=\"$1\" git commit --amend --no-edit --date=\"$1\"; }; f"
